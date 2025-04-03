@@ -1,22 +1,20 @@
 ﻿using System;
 
-namespace CyberSecurityBot
+namespace CyberSecurityChatBotAI
 {
-    // Main ChatBot class
+    // Handles user interaction and chatbot operation
     public class ChatBot
     {
         private string name;
         private AudioImageHandler mediaHandler;
         private QuestionHandler questionHandler;
 
-        // Constructor initializes media and question handling components
         public ChatBot()
         {
             mediaHandler = new AudioImageHandler();
             questionHandler = new QuestionHandler();
         }
 
-        // Runs the chatbot, displaying the logo, playing welcome audio, and prompting user interaction
         public void Run()
         {
             Console.ForegroundColor = ConsoleColor.Cyan;
@@ -27,7 +25,6 @@ namespace CyberSecurityBot
             Menu();
         }
 
-        // Displays a simple loading animation before the chatbot starts
         private void ShowLoading(int seconds = 3)
         {
             Console.Write("\n Starting up chatbot AI");
@@ -39,7 +36,6 @@ namespace CyberSecurityBot
             Console.WriteLine();
         }
 
-        // Prompts user for their name and greets them
         private void WelcomeUser()
         {
             Console.WriteLine("\n===================================================================================================");
@@ -51,11 +47,10 @@ namespace CyberSecurityBot
             name = Console.ReadLine();
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine("\n===================================================================================================");
-            Console.WriteLine("Chat AI-> Your full name is: " + name);
+            Console.WriteLine("Chat AI-> Well hello there: " + name);
             Console.WriteLine("===================================================================================================");
         }
 
-        // Displays the main menu and handles user interactions
         private void Menu()
         {
             while (true)
@@ -68,7 +63,7 @@ namespace CyberSecurityBot
                 string answer = Console.ReadLine()?.ToLower();
                 Console.ForegroundColor = ConsoleColor.Cyan;
 
-                // Handles user input for asking questions or exiting the chatbot
+                //used a case here instead of using a do while loop to have an eaaier user interaction 
                 switch (answer)
                 {
                     case "yes":

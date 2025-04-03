@@ -1,49 +1,55 @@
 ﻿using System;
 using System.IO;
 using System.Media;
-using System.Collections.Generic;
-using System.Collections;
 using System.Drawing;
 
-
-namespace CyberSecurityBot
+namespace CyberSecurityChatBotAI
 {
-    // Subclass for handling audio and image display
+    //This class will handle the audio and image files for the CyberBot.
     public class AudioImageHandler
     {
-        // Plays a welcome audio file at startup
+        //This method plays the welcome audio of the CyberBot.
         public void PlayWelcomeAudio()
         {
+            //Getting the path of the audio file.
             string fullLocation = AppDomain.CurrentDomain.BaseDirectory;
             string newPath = fullLocation.Replace("bin\\Debug\\", "");
 
             try
             {
-                string fullPath = Path.Combine(newPath, "HumeAI_voice-preview_Voice.wav");
+                //Combining the path with the audio file name.
+                string fullPath = Path.Combine(newPath, "BotGreeting.wav");
                 using (SoundPlayer play = new SoundPlayer(fullPath))
                 {
                     play.PlaySync();
                 }
             }
+
+            //Catching any exceptions that may occur.
             catch (Exception error)
             {
-                Console.Write(error.Message);
+                Console.WriteLine("Error playing audio: " + error.Message);
             }
-        }
 
-        // Displays an ASCII art version of a logo image
+        }//End of PlayWelcomeAudio method.
+
+        //This method displays the logo of the CyberBot as ASCII art.
         public void DisplayLogo()
         {
+            //Getting the path of the image.
             string paths = AppDomain.CurrentDomain.BaseDirectory;
+
+            //Removing the bin\Debug\ part of the path.
             string newPath = paths.Replace("bin\\Debug\\", "");
-            string fullPath = Path.Combine(newPath, "robots.jpg");
+
+            //Combining the path with the image name.
+            string fullPath = Path.Combine(newPath, "Ascii-image.jpg");
 
             try
             {
                 Bitmap logo = new Bitmap(fullPath);
                 logo = new Bitmap(logo, new Size(120, 170));
 
-                // Converts image pixels to ASCII characters and prints to the console
                 for (int height = 0; height < logo.Height; height++)
                 {
                     for (int width = 0; width < logo.Width; width++)
@@ -54,12 +60,19 @@ namespace CyberSecurityBot
                         Console.Write(asciiChar);
                     }
                     Console.WriteLine();
-                }
-            }
-            catch (Exception ex)
+
+                }//End of for loop.
+
+            }//End of try block.
+
+            //Catching any exceptions that may occur.
+            catch (Exception error)
             {
-                Console.WriteLine("Error displaying logo: " + ex.Message);
+                Console.WriteLine("Error displaying image: " + error.Message);
             }
-        }
-    }
-}
+
+        }//End of DisplayLogo method.
+
+    }//End of AudioImageHandler class.
+
+}// End of the namespace POE.
